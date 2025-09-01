@@ -69,9 +69,10 @@ function ReaderHomePage() {
     // Fetch books from the Books folder
     const fetchBooks = async () => {
       try {
-        const response = await fetch('/Books/books.json'); // ✅ use static JSON file
+        // Get folder list from the static books.json file
+        const response = await fetch('/Books/books.json');
         const folders = await response.json();
-  
+    
         const bookPromises = folders.map(async (folder) => {
           try {
             const bookResponse = await fetch(`/Books/${folder}/book.json`);
@@ -87,13 +88,14 @@ function ReaderHomePage() {
             return null;
           }
         });
-  
+    
         const booksData = await Promise.all(bookPromises);
         setBooks(booksData.filter((book) => book !== null));
       } catch (error) {
         console.error('Error fetching books:', error);
       }
     };
+    
 
     fetchBooks();
   }, []);
