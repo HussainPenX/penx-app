@@ -1,10 +1,8 @@
 // netlify/functions/toggle-favorite.js
-const { MongoClient } = require("mongodb");
 let client;
 
 async function connectDB() {
   if (!client) {
-    client = new MongoClient(process.env.MONGO_URI);
     await client.connect();
   }
   return client.db("penx-app");
