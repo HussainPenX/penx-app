@@ -22,11 +22,12 @@ function ReaderLoginPage() {
       console.log('Email entered:', email); // Debugging log
       console.log('Password entered:', password); // Debugging log
 
-      const response = await fetch(`${config.API_URL}/api/reader-login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch(`${config.API_URL}/reader-login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
+      
 
       console.log('Login response status:', response.status); // Debugging log
 
