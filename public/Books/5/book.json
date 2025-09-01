@@ -1,0 +1,14 @@
+{
+  "Title": "Introduction to Power BI: Getting Started with Data Visualization",
+  "Author": "Hussain Ghonem",
+  "AuthorEmail": "hussainghonem99@gmail.com",
+  "Language": "English",
+  "Genres": [
+    "Educational",
+    "Technology",
+    "Research"
+  ],
+  "Description": "In today's data-driven landscape, businesses and organizations face the challenge of effectively utilizing vast amounts of data to derive meaningful insights. Data visualization tools have emerged as essential aids in this endeavor, facilitating the transformation of raw data into actionable visual representations. Among these tools, Power BI, developed by Microsoft, stands out as a versatile platform for data visualization and analytics. This article, authored by Hussain Ghonem, provides a comprehensive introduction to Power BI and serves as a step-by-step guide for individuals embarking on their data visualization journey. Covering fundamental concepts such as installing Power BI, connecting to data sources, building data models, creating visualizations, and sharing insights, this guide equips readers with the knowledge and skills needed to harness the full potential of Power BI. Additionally, advanced features such as DAX (Data Analysis Expressions), Power Query Editor, custom visuals, and AI insights are explored, offering readers a deeper understanding of the platform's capabilities. Through practical guidance and illustrative examples, readers will gain confidence in utilizing Power BI to analyze data, uncover trends, and make informed decisions, ultimately empowering them to succeed in the dynamic realm of data analytics.",
+  "Cover": "/Books/5/1BookCover.png",
+  "Pdf": "/Books/5/1748011231358.pdf"
+}
