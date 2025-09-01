@@ -5,3 +5,4 @@
 
 [build.environment]
   NODE_VERSION = "20.15.1"
+  CI = "false"
