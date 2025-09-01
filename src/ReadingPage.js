@@ -13,28 +13,32 @@ function ReadingPage() {
   useEffect(() => {
     const fetchBookData = async () => {
       try {
-        console.log('Fetching book.json for bookId:', bookId);
-        const response = await fetch(`/Books/${bookId}/book.json`);
-        console.log('Response status:', response.status);
+        const url = `${process.env.PUBLIC_URL}/Books/${bookId}/book.json`;
+        console.log("Fetching book.json from:", url);
+    
+        const response = await fetch(url);
+        console.log("Response status:", response.status);
+    
         if (response.ok) {
           const bookData = await response.json();
-          console.log('Book data fetched:', bookData);
-          console.log('PDF path set to:', bookData.Pdf);
+          console.log("Book data fetched:", bookData);
+    
           if (bookData.Pdf) {
-            setPdfPath(bookData.Pdf);
+            setPdfPath(`${process.env.PUBLIC_URL}/Books/${bookId}/${bookData.Pdf}`);
           } else {
-            console.error('No PDF file specified in book.json.');
+            console.error("No PDF file specified in book.json.");
             setPdfPath(null);
           }
         } else {
-          console.error('Failed to fetch book.json for bookId:', bookId);
+          console.error("Failed to fetch book.json for bookId:", bookId);
           setPdfPath(null);
         }
       } catch (error) {
-        console.error('Error fetching book.json:', error);
+        console.error("Error fetching book.json:", error);
         setPdfPath(null);
       }
     };
+    
 
     fetchBookData();
   }, [bookId]);
