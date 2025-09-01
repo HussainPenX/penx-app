@@ -69,18 +69,15 @@ function ReaderHomePage() {
     // Fetch books from the Books folder
     const fetchBooks = async () => {
       try {
-        const response = await fetch(`${config.API_URL}/Books`);
+        const response = await fetch('/Books/books.json'); // ✅ use static JSON file
         const folders = await response.json();
-
-        console.log('Folders fetched:', folders); // Debugging log
-
+  
         const bookPromises = folders.map(async (folder) => {
           try {
             const bookResponse = await fetch(`/Books/${folder}/book.json`);
             if (bookResponse.ok) {
               const bookData = await bookResponse.json();
-              console.log(`Book data from folder ${folder}:`, bookData); // Debugging log
-              return { ...bookData, FolderName: folder }; // Add FolderName to the book object
+              return { ...bookData, FolderName: folder };
             } else {
               console.warn(`No book.json found in folder: ${folder}`);
               return null;
@@ -90,10 +87,9 @@ function ReaderHomePage() {
             return null;
           }
         });
-
+  
         const booksData = await Promise.all(bookPromises);
-        console.log('Books data fetched:', booksData); // Debugging log
-        setBooks(booksData.filter((book) => book !== null)); // Filter out any null results
+        setBooks(booksData.filter((book) => book !== null));
       } catch (error) {
         console.error('Error fetching books:', error);
       }

@@ -1,48 +1,36 @@
 // netlify/functions/toggle-favorite.js
-let client;
-
-async function connectDB() {
-  if (!client) {
-    await client.connect();
-  }
-  return client.db("penx-app");
-}
+let favorites = require("../../data/favorites.json");
 
 exports.handler = async (event) => {
   try {
     if (event.httpMethod !== "POST") {
-      return { statusCode: 405, body: "Method Not Allowed" };
+      return { statusCode: 405, body: "Method not allowed" };
     }
 
     const { email, bookId, isFavorited } = JSON.parse(event.body);
     if (!email || !bookId) {
-      return { statusCode: 400, body: JSON.stringify({ error: "Missing fields" }) };
+      return { statusCode: 400, body: "Missing email or bookId" };
     }
 
-    const db = await connectDB();
-    const collection = db.collection("favorites");
+    // Initialize if not present
+    if (!favorites[email]) {
+      favorites[email] = [];
+    }
 
     if (isFavorited) {
-      await collection.updateOne(
-        { email },
-        { $addToSet: { favorites: bookId } },
-        { upsert: true }
-      );
+      if (!favorites[email].includes(bookId)) {
+        favorites[email].push(bookId);
+      }
     } else {
-      await collection.updateOne(
-        { email },
-        { $pull: { favorites: bookId } }
-      );
+      favorites[email] = favorites[email].filter((id) => id !== bookId);
     }
-
-    const updated = await collection.findOne({ email });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ favorites: updated.favorites || [] }),
+      body: JSON.stringify({ favorites: favorites[email] }),
     };
   } catch (err) {
     console.error("Error in toggle-favorite:", err);
-    return { statusCode: 500, body: JSON.stringify({ error: "Server error" }) };
+    return { statusCode: 500, body: "Server error" };
   }
 };
