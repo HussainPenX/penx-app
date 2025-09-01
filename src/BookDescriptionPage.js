@@ -24,7 +24,7 @@ function BookDescriptionPage() {
         setError(null);
         
         // First, get the list of books to find the correct folder name
-        const response = await fetch(`${config.API_URL}/Books`);
+        const response = await fetch(`${config.API_URL}/.netlify/functions/books`);
         if (!response.ok) {
           throw new Error('Failed to fetch books list');
         }
