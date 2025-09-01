@@ -17,6 +17,9 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "predeploy": "npm run build && echo > build\\.nojekyll",
