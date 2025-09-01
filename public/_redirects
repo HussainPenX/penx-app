@@ -1,0 +1,2 @@
+/Books/*   /Books/:splat   200
+/*         /index.html     200
