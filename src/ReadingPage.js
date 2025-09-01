@@ -13,18 +13,17 @@ function ReadingPage() {
   useEffect(() => {
     const fetchBookData = async () => {
       try {
-        const url = `${process.env.PUBLIC_URL}/Books/${bookId}/book.json`;
+        const url = `${window.location.origin}/Books/${bookId}/book.json`;
         console.log("Fetching book.json from:", url);
     
         const response = await fetch(url);
-        console.log("Response status:", response.status);
     
         if (response.ok) {
           const bookData = await response.json();
           console.log("Book data fetched:", bookData);
     
           if (bookData.Pdf) {
-            setPdfPath(`${process.env.PUBLIC_URL}/Books/${bookId}/${bookData.Pdf}`);
+            setPdfPath(`${window.location.origin}/Books/${bookId}/${bookData.Pdf}`);
           } else {
             console.error("No PDF file specified in book.json.");
             setPdfPath(null);
@@ -38,6 +37,7 @@ function ReadingPage() {
         setPdfPath(null);
       }
     };
+    
     
 
     fetchBookData();
