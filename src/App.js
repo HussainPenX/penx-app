@@ -22,7 +22,8 @@ import AdminLoginPage from './AdminLoginPage';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<WelcomePage />} />
+      <Route path="/" element={<SplashScreen />} />
+      <Route path="/welcome" element={<WelcomePage />} />
       <Route path="/reader-home" element={<ReaderHomePage />} />
       <Route path="/reader-account" element={<ReaderAccountPage />} />
       <Route path="/reader-login" element={<ReaderLoginPage />} />
@@ -36,12 +37,9 @@ function App() {
       <Route path="/author-reading/:bookId" element={<AuthorReadingPage />} />
       <Route path="/book-stats/:bookId" element={<BookStatsPage />} />
       <Route path="/add-book" element={<AddBookPage />} />
-      <Route path="/welcome" element={<WelcomePage />} />
-      <Route path="/" element={<SplashScreen />} />
       <Route path="/book/:bookId" element={<BookDescriptionPage />} />
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/admin-login" element={<AdminLoginPage />} />
-      {/* Add more routes as needed */}
     </Routes>
   );
 }
